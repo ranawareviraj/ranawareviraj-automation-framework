@@ -1,3 +1,7 @@
 applications:
   google:
     url: https://www.google.com
+  bing:
+    url: https://www.bing.com/
+  duckduckgo:
+    url: https://duckduckgo.com/

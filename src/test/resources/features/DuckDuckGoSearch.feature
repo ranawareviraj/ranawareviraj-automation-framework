@@ -1,14 +1,14 @@
-@Google
-Feature: Google Search
+@DuckDuckGo
+Feature: DuckDuckGo Search
 
   Background:
-    Given I open the google
+    Given I open the DuckDuckGo
 
-  @Google_SC01
-  Scenario Outline: Google Search for <scenarioName> : '<searchText>'
-    When I search on google for '<searchText>'
+  @DuckDuckGo_SC01
+  Scenario Outline: DuckDuckGo Search for <scenarioName> : '<searchText>'
+    When I search on DuckDuckGo for '<searchText>'
     Then The page title should start with '<searchText>'
-    When I click on the first google search result link
+    When I click on the first DuckDuckGo result link
     Then The search result page should contain '<url>'
     Examples:
       | scenarioName      | searchText   | url                       |

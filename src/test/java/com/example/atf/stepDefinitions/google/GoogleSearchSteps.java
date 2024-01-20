@@ -1,7 +1,7 @@
 package com.example.atf.stepDefinitions.google;
 
-import com.example.atf.pages.google.HomePage;
-import com.example.atf.pages.google.SearchResultsPage;
+import com.example.atf.pages.google.GoogleHomePage;
+import com.example.atf.pages.google.GoogleSearchResultsPage;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -18,49 +18,33 @@ import org.springframework.test.context.ContextConfiguration;
 @SpringBootTest
 public class GoogleSearchSteps {
 
-    private static final Logger logger = LoggerFactory.getLogger(HomePage.class);
-    private final HomePage homePage;
-    private final SearchResultsPage searchResultsPage;
+    private static final Logger logger = LoggerFactory.getLogger(GoogleHomePage.class);
+    private final GoogleHomePage googleHomePage;
+    private final GoogleSearchResultsPage googleSearchResultsPage;
 
     @Autowired
-    public GoogleSearchSteps(HomePage homePage, SearchResultsPage searchResultsPage) {
-        this.homePage = homePage;
-        this.searchResultsPage = searchResultsPage;
+    public GoogleSearchSteps(GoogleHomePage googleHomePage, GoogleSearchResultsPage googleSearchResultsPage) {
+        this.googleHomePage = googleHomePage;
+        this.googleSearchResultsPage = googleSearchResultsPage;
     }
 
     @Given("I open the google")
     public void i_open_the_google() {
         logger.info("Navigating to Google.com");
-        homePage.goTo();
+        googleHomePage.goTo();
     }
 
-    @When("I search for {string}")
+    @When("I search on google for {string}")
     public void i_search_for(String searchText) {
         logger.info("Searching for: {}", searchText);
-        homePage.search(searchText);
+        googleHomePage.search(searchText);
+        Assertions.assertTrue(googleSearchResultsPage.isLoaded());
     }
 
-    @Then("The page title should start with {string}")
-    public void the_page_title_should_start_with(String searchText) {
-        logger.info("Verifying page title starts with: {}", searchText);
-        Assertions.assertTrue(searchResultsPage.isLoaded());
-        Assertions.assertTrue(searchResultsPage.webDriver.getTitle().startsWith(searchText));
-        homePage.screenshotsUtil.takeScreenshot("GoogleSearchResultsAll");
-    }
-
-    @Then("I Click on the first result link")
+    @Then("I click on the first google search result link")
     public void click_on_the_first_result() {
         logger.info("Clicking on the first result");
-        searchResultsPage.clickOnFirstResult();
-    }
-
-    @Then("The search result page should contain {string}")
-    public void the_search_result_page_should_contain(String url) {
-        logger.info("Verifying that the search result page contains: {}", url);
-        String currentUrl = searchResultsPage.webDriver.getCurrentUrl();
-        String message = String.format("The search result page url does not contain: %s. The actual url is: %s", url, currentUrl);
-        Assertions.assertEquals(currentUrl, url, message);
-        homePage.screenshotsUtil.takeScreenshot("GoogleSearchResultsFirst");
+        googleSearchResultsPage.clickOnFirstResult();
     }
 
 }

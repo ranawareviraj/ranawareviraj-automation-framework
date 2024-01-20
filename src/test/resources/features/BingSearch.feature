@@ -1,14 +1,14 @@
-@Google
-Feature: Google Search
+@Bing
+Feature: Bing Search
 
   Background:
-    Given I open the google
+    Given I open the bing
 
-  @Google_SC01
-  Scenario Outline: Google Search for <scenarioName> : '<searchText>'
-    When I search on google for '<searchText>'
+  @Bing_SC01
+  Scenario Outline: Bing Search for <scenarioName> : '<searchText>'
+    When I search on bing for '<searchText>'
     Then The page title should start with '<searchText>'
-    When I click on the first google search result link
+    When I click on the first bing result link
     Then The search result page should contain '<url>'
     Examples:
       | scenarioName      | searchText   | url                       |

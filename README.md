@@ -23,7 +23,7 @@ Ensure you have the following installed on your machine:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/ranawareviraj/automation-framework.git
+   git clone https://github.com/ranawareviraj/ranawareviraj-automation-framework.git
    ```
 2. Navigate to the project directory:
    ```bash
@@ -39,13 +39,11 @@ Ensure you have the following installed on your machine:
 
 ## Configuration
 
-- Customize test configuration in src/main/java/resources/application.properties.
+- Customize test configuration in src/main/java/resources/application.properties file.
+- Update test environment details in src/main/java/resources/application.yml file.
 - Update feature files in src/test/resources/features with your scenarios.
 
 
-## Reporting
-View test execution reports in results/test-execution-report.html after running the tests.
-
-
-
-
+## Logging and Reporting
+- View test execution reports in results/test-execution-report.html after running the tests.
+- View test execution logs in results/atf-execution-logs.log file after running the tests.

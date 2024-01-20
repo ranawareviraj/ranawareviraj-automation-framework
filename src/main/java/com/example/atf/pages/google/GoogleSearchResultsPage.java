@@ -14,18 +14,18 @@ import java.util.List;
 
 @Lazy
 @Component
-public class SearchResultsPage extends BasePage {
+public class GoogleSearchResultsPage extends BasePage {
 
     @FindBy(xpath = "//h3[@class='LC20lb MBeuO DKV0Md']")
     private List<WebElement> results;
 
-    public SearchResultsPage(WebDriver webDriver, WebDriverWait wait, ScreenshotsUtil screenshotsUtil) {
+    public GoogleSearchResultsPage(WebDriver webDriver, WebDriverWait wait, ScreenshotsUtil screenshotsUtil) {
         super(webDriver, wait, screenshotsUtil);
     }
 
     @Override
     public boolean isLoaded() {
-        return webDriver.getTitle().contains("Google Search");
+        return this.wait.until(searchBox -> this.results.size() > 0);
     }
 
     public List<WebElement> getResults() {
